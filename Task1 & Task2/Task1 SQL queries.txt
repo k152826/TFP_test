@@ -1,0 +1,26 @@
+---------------------------------------------------
+
+1- 
+ SELECT pi.patient_id as Patient_ID , pi2.patient_id as Partner_ID,pi.patient_name as Patient_Name ,pi.patient_gender as patient_gender,pi.patient_phone as Patient_phno,pi.province as Patient_province, pi2.patient_name as Partner_Name, pi2.patient_gender as Partner_Gender 
+FROM patient_info pi
+INNER JOIN patient_partner_mapping ppm
+ON pi.patient_id = ppm.patient_id
+INNER Join patient_info pi2
+ON pi2.patient_id = ppm.partner_id
+
+2-
+select *  from 
+patient_info pi1
+where pi1.patient_id NOT IN (SELECT pi.patient_id
+FROM patient_info pi
+
+3-
+select province , count(*) as Count 
+from patient_info group by province
+INNER JOIN patient_partner_mapping ppm
+ON pi.patient_id = ppm.patient_id)
+
+4-
+select MONTH(created_at) as Months, count(*) as Patient_Count
+ from patient_info
+group by Months;
